@@ -10,4 +10,6 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Require: Hmisc
+Depends: rms
+Suggests: Hmisc
+

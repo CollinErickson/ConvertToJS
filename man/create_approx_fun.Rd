@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_approx_fun.R
 \name{create_approx_fun}
 \alias{create_approx_fun}
-\title{Title}
+\title{Approximate a 1D R function and export}
 \usage{
 create_approx_fun(
   f,
@@ -42,7 +42,7 @@ be added so it is vectorized?}
 A function or string
 }
 \description{
-Title
+Approximate a 1D R function and export
 }
 \examples{
 

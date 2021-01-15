@@ -1,5 +1,5 @@
 
-#' Title
+#' Approximate a 1D R function and export
 #'
 #' @param f R function taking a single input
 #' @param from Minimum x to evaluate
@@ -14,6 +14,7 @@
 #' @param pretty Should the JavaScript output have new lines and tab indentation?
 #' be added so it is vectorized?
 #' @importFrom utils capture.output
+#' @importFrom rms rcs ols
 #'
 #' @return A function or string
 #' @export
@@ -46,7 +47,7 @@ create_approx_fun <- function(f, from, to, N, K, language="R", varname="x",
   # K <- knot_x
   # }
 
-  f <- rms::ols(y ~ rcs(x, K))  # 2 d.f. for x
+  f <- ols(y ~ rcs(x, K))  # 2 d.f. for x
 
   if (tolower(language) == "r") {
     Hmisc::Function(f)
@@ -71,9 +72,9 @@ create_approx_fun <- function(f, from, to, N, K, language="R", varname="x",
 
       # browser()
       rchar <- gsub("{\n\treturn ",
-                    paste0("{let deob = false; if(typeof(", varname,
-                           ")=='number') {", varname, "=[", varname,
-                           "]; deob=true;} let y=x.map(x=>("),
+                    paste0("{\n\tlet deob = false;\n\tif(typeof(", varname,
+                           ")=='number') {\n\t\t", varname, "=[", varname,
+                           "]; \n\t\tdeob=true;}\n\tlet y=x.map(x=>("),
                     rchar, fixed=TRUE)
       rchar <- paste(rchar, "end")
       rchar <- gsub(";\n} end", "));\n\treturn deob ? y[0] : y;\n}", rchar, fixed=TRUE)
