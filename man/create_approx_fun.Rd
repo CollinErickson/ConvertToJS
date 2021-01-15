@@ -33,7 +33,9 @@ function as a string, "JS" for JavaScript,}
 
 \item{varname}{The name of the variable for the output function}
 
-\item{vectorize_JS}{If the output is a JavaScript function, should code
+\item{vectorize_JS}{If the output is a JavaScript function, should code}
+
+\item{pretty}{Should the JavaScript output have new lines and tab indentation?
 be added so it is vectorized?}
 }
 \value{
@@ -49,10 +51,10 @@ curve(f1, lwd=10)
 f2 <- create_approx_fun(f1,0,1, 11, 4)
 curve(f2, add=T, col=2, lwd=6, lty=2)
 f3 <- create_approx_fun(f1,0,1, 51, 14)
-curve(f3, add=T, col=3, lwd=6, lty=3)e
+curve(f3, add=T, col=3, lwd=6, lty=3)
 # Fewer points but concentrated in right end
 f4 <- create_approx_fun(f1,0,1, 51, K=c(0,.3,.6,.7,.8,.85,.9,.95,.97,1))
-curve(f4, add=T, col=4, lwd=6, lty=4)e
+curve(f4, add=T, col=4, lwd=6, lty=4)
 
 create_approx_fun(f1,0,1, 11, 4, language='rchar')
 cat(create_approx_fun(f1,0,1, 11, 4, language='Js'))
